@@ -121,3 +121,42 @@
   transform: scale(1.05);
   box-shadow: 0 4px 16px rgba(103, 80, 164, 0.3);
 }
+
+/* 音标显示样式 */
+.smart-phonetic-display {
+  font-family: 'Courier New', monospace !important;
+  font-size: 11px !important;
+  color: rgba(103, 80, 164, 0.7) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-weight: normal !important;
+  font-style: italic !important;
+  backdrop-filter: blur(2px) !important;
+  box-shadow: 0 1px 3px rgba(103, 80, 164, 0.1) !important;
+  white-space: nowrap !important;
+  user-select: none !important;
+}
+
+/* 音标显示动画 */
+@keyframes phoneticFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes phoneticFadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
