@@ -116,20 +116,20 @@ class SmartSelectionTranslator {
     }
   }
 
-  handleSingleClick(event) {
+    handleSingleClick(event) {
     if (!this.isListening || !this.isReady || !this.lastSelection) {
       return;
     }
 
-    // 检查当前选择是否还存在
-    const currentSelection = window.getSelection();
-    const currentText = currentSelection.toString().trim();
-    
-    if (currentText !== this.lastSelection.text) {
-      this.resetListeningState();
-      return;
-    }
-    
+      // 检查当前选择是否还存在
+      const currentSelection = window.getSelection();
+      const currentText = currentSelection.toString().trim();
+      
+      if (currentText !== this.lastSelection.text) {
+        this.resetListeningState();
+        return;
+      }
+      
     // 检查点击位置是否在选中文本范围内
     const clickedElement = document.elementFromPoint(event.clientX, event.clientY);
     if (!clickedElement) {
@@ -141,17 +141,17 @@ class SmartSelectionTranslator {
     const containsSelectedText = this.elementContainsSelection(clickedElement, this.lastSelection);
     
     if (containsSelectedText) {
-      // 清除超时
-      if (this.clickTimeout) {
-        clearTimeout(this.clickTimeout);
-        this.clickTimeout = null;
+        // 清除超时
+        if (this.clickTimeout) {
+          clearTimeout(this.clickTimeout);
+          this.clickTimeout = null;
+        }
+        
+        this.showTranslationBubble();
+        this.resetListeningState();
+      } else {
+        this.resetListeningState();
       }
-      
-      this.showTranslationBubble();
-      this.resetListeningState();
-    } else {
-      this.resetListeningState();
-    }
   }
 
   elementContainsSelection(element, selection) {
@@ -330,7 +330,7 @@ class SmartSelectionTranslator {
       // 移除所有气泡
       this.bubbles.forEach((bubbleInfo) => {
         if (bubbleInfo.element) {
-          bubbleInfo.element.remove();
+        bubbleInfo.element.remove();
         }
       });
       this.bubbles.clear();
@@ -364,18 +364,18 @@ class SmartSelectionTranslator {
       this.updateBubbleContent(bubbleId, result.translation, 'success');
       
       // 保存到生词本
-      await this.saveTranslation({
+        await this.saveTranslation({
         word: result.word || selectedText,
         translation: result.translation,
         phonetic: result.phonetic || '',
-        context: context,
+          context: context,
         explanation: result.explanation || '',
-        timestamp: Date.now()
-      });
+          timestamp: Date.now()
+        });
       
-    } catch (error) {
+         } catch (error) {
       this.updateBubbleContent(bubbleId, this.getErrorMessage(error), 'error');
-    }
+     }
   }
 
   getContext(selection = null) {
@@ -417,9 +417,9 @@ class SmartSelectionTranslator {
   async sendTranslationRequest(text, context) {
     return new Promise((resolve, reject) => {
       chrome.runtime.sendMessage({
-        action: 'translate',
-        text: text,
-        context: context
+      action: 'translate',
+      text: text,
+      context: context
       }, (response) => {
         if (chrome.runtime.lastError) {
           reject(new Error(chrome.runtime.lastError.message));
@@ -452,7 +452,7 @@ class SmartSelectionTranslator {
     bubbleElement.classList.remove('loading');
     
     // 设置内容
-    contentElement.textContent = content;
+      contentElement.textContent = content;
     
     // 设置状态样式
     bubbleElement.className = `smart-translation-bubble ${type}`;
