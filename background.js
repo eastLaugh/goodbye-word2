@@ -42,25 +42,50 @@ async function handleTranslation(request, sendResponse) {
   "function_calls": []
 }
 
-如果遇到需要特别提醒用户的情况，请在function_calls中添加alert函数：
+在以下情况下，请在function_calls中添加alert函数进行特别提醒：
+
+1. 包含冒犯意思的单词（如种族、性别、身体缺陷相关的贬义词）
+2. 极其少见、不具有迁移意义的翻译（如古英语、方言、专业术语）
+3. 容易被误用或有文化敏感性的词汇
+
+示例1 - 冒犯性词汇：
 {
   "word": "retarded",
-  "translation": "adj. 迟钝的",
+  "translation": "adj.迟钝的",
   "phonetic": "/rɪˈtɑːdɪd/",
-  "explanation": "retarded 是一个形容词，意思是迟钝的。",
+  "explanation": "原意为迟缓、延迟，但现在被认为是对智力障碍者的冒犯性用词。",
   "function_calls": [
     {
       "name": "alert",
       "arguments": {
-        "message": "曾用于 “智力迟缓者”，现被认为极不尊重，建议用 person with intellectual disability"
+        "message": "⚠️ 敏感词汇提醒：此词曾用于描述智力障碍，现被认为极不尊重，建议使用 'person with intellectual disability'"
+      }
+    }
+  ]
+}
+
+示例2 - 极少见翻译：
+{
+  "word": "defenestration",
+  "translation": "n.从窗户扔出去",
+  "phonetic": "/ˌdiːfɛnɪˈstreɪʃən/",
+  "explanation": "一个极其特殊的词汇，专指从窗户扔东西或人的行为，源于历史事件。",
+  "function_calls": [
+    {
+      "name": "alert",
+      "arguments": {
+        "message": "📚 罕见词汇：这是一个极其少见的专门术语，日常使用价值很低，主要出现在历史语境中"
       }
     }
   ]
 }`;
 
-    console.group('🚀');
     // 输出API调用信息
-    console.log(prompt);
+    console.log('🚀 发送翻译请求到DeepSeek API:', {
+      text,
+      context,
+      timestamp: new Date().toISOString()
+    });
 
     // 发送请求到DeepSeek API
     const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
@@ -88,8 +113,7 @@ async function handleTranslation(request, sendResponse) {
     const content = data.choices?.[0]?.message?.content;
 
     // 输出完整回复
-    console.log('📥', content);
-    console.groupEnd();
+    console.log('📥 DeepSeek API 完整回复:', content);
 
     if (!content) {
       sendResponse({ success: false, error: 'API响应格式错误' });

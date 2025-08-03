@@ -181,6 +181,9 @@ class SmartSelectionTranslator {
     }
   }
 
+  /**
+   * 重置智能选中监听状态
+   */
   resetListeningState() {
     this.isListening = false;
     this.isReady = false;
@@ -190,6 +193,9 @@ class SmartSelectionTranslator {
       clearTimeout(this.clickTimeout);
       this.clickTimeout = null;
     }
+    
+    // 清除音标显示
+    this.removePhonetic();
   }
 
   showTranslationBubble() {
@@ -363,6 +369,11 @@ class SmartSelectionTranslator {
       // 显示翻译结果
       this.updateBubbleContent(bubbleId, result.translation, 'success');
       
+      // 显示音标（如果有的话）
+      if (result.phonetic) {
+        this.showPhonetic(bubbleInfo.selection, result.phonetic);
+      }
+      
       // 保存到生词本
       await this.saveTranslation({
         word: result.word || selectedText,
@@ -462,6 +473,75 @@ class SmartSelectionTranslator {
     
     // 添加tooltip - 显示解释信息
     bubbleElement.title = content;
+  }
+
+  /**
+   * 在选中文本上方显示音标
+   * @param {Object} selection - 选择信息对象
+   * @param {string} phonetic - 音标文本
+   */
+  showPhonetic(selection, phonetic) {
+    if (!selection || !selection.range || !phonetic) return;
+
+    try {
+      // 移除之前的音标
+      this.removePhonetic();
+
+      const range = selection.range;
+      const rect = range.getBoundingClientRect();
+      
+      // 创建音标元素
+      const phoneticElement = document.createElement('div');
+      phoneticElement.className = 'smart-phonetic-display';
+      phoneticElement.textContent = phonetic;
+      phoneticElement.id = 'smart-phonetic-current';
+      
+      // 设置位置样式
+      phoneticElement.style.cssText = `
+        position: fixed;
+        top: ${rect.top + window.scrollY - 25}px;
+        left: ${rect.left + window.scrollX + (rect.width / 2)}px;
+        transform: translateX(-50%);
+        z-index: 10001;
+        pointer-events: none;
+        font-family: 'Courier New', monospace;
+        font-size: 11px;
+        color: rgba(103, 80, 164, 0.7);
+        background: rgba(255, 255, 255, 0.9);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: normal;
+        font-style: italic;
+        backdrop-filter: blur(2px);
+        box-shadow: 0 1px 3px rgba(103, 80, 164, 0.1);
+        animation: phoneticFadeIn 0.3s ease-out;
+      `;
+
+      document.body.appendChild(phoneticElement);
+
+      // 3秒后自动移除
+      setTimeout(() => {
+        this.removePhonetic();
+      }, 3000);
+
+    } catch (error) {
+      console.error('显示音标失败:', error);
+    }
+  }
+
+  /**
+   * 移除当前显示的音标
+   */
+  removePhonetic() {
+    const existingPhonetic = document.getElementById('smart-phonetic-current');
+    if (existingPhonetic) {
+      existingPhonetic.style.animation = 'phoneticFadeOut 0.2s ease-in';
+      setTimeout(() => {
+        if (existingPhonetic.parentNode) {
+          existingPhonetic.parentNode.removeChild(existingPhonetic);
+        }
+      }, 200);
+    }
   }
 
   /**

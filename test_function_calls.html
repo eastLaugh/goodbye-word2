@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Call 测试用例 - 再见单词</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: #fafafa;
+        }
+        .test-category {
+            margin: 30px 0;
+            padding: 25px;
+            border: 2px solid #6750a4;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(103, 80, 164, 0.1);
+        }
+        .test-category h2 {
+            color: #6750a4;
+            margin-top: 0;
+            border-bottom: 2px solid #e8e0ec;
+            padding-bottom: 10px;
+        }
+        .test-word {
+            background: #fff3e0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            color: #d84315;
+            display: inline-block;
+            margin: 4px;
+            cursor: pointer;
+            border: 1px solid #ffcc02;
+        }
+        .test-word:hover {
+            background: #ffe0b2;
+            transform: translateY(-1px);
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .instruction {
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            color: #0d47a1;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        .context-box {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #6750a4;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚨 Function Call 测试用例</h1>
+    
+    <div class="instruction">
+        <strong>测试说明：</strong> 双击下面的单词，然后单击激活翻译。这些单词应该触发DeepSeek的alert提醒功能。
+    </div>
+
+    <div class="test-category">
+        <h2>1. 冒犯性/敏感词汇测试</h2>
+        <div class="warning">⚠️ 这些词汇可能包含冒犯内容，仅用于测试敏感词检测功能</div>
+        
+        <div class="context-box">
+            <p>The medical term <span class="test-word">retarded</span> is now considered offensive.</p>
+            <p>Using the word <span class="test-word">negro</span> is inappropriate in modern context.</p>
+            <p>The term <span class="test-word">mongoloid</span> is an outdated and offensive classification.</p>
+            <p>Calling someone <span class="test-word">crippled</span> is considered insensitive.</p>
+            <p>The word <span class="test-word">midget</span> is offensive to people with dwarfism.</p>
+        </div>
+    </div>
+
+    <div class="test-category">
+        <h2>2. 极其罕见/专业术语测试</h2>
+        <div class="warning">📚 这些是极其少见或高度专业化的词汇</div>
+        
+        <div class="context-box">
+            <p>The <span class="test-word">defenestration</span> of Prague was a historical event.</p>
+            <p>She suffered from <span class="test-word">pneumonoultramicroscopicsilicovolcanoconiosiss</span>, a lung disease.</p>
+            <p>The <span class="test-word">floccinaucinihilipilification</span> of his efforts was unfair.</p>
+            <p>Ancient <span class="test-word">hippopotomonstrosesquippedaliophobia</span> affects many people.</p>
+            <p>The scholar studied <span class="test-word">antidisestablishmentarianism</span> movements.</p>
+        </div>
+    </div>
+
+    <div class="test-category">
+        <h2>3. 文化敏感性词汇测试</h2>
+        <div class="warning">🌍 这些词汇在不同文化背景下可能有敏感含义</div>
+        
+        <div class="context-box">
+            <p>The term <span class="test-word">oriental</span> is considered outdated when referring to people.</p>
+            <p>Using <span class="test-word">gypsy</span> can be offensive to Romani people.</p>
+            <p>The word <span class="test-word">tribe</span> can be problematic in certain contexts.</p>
+            <p>Saying <span class="test-word">primitive</span> about cultures is culturally insensitive.</p>
+            <p>The term <span class="test-word">savage</span> has colonial and racist connotations.</p>
+        </div>
+    </div>
+
+    <div class="test-category">
+        <h2>4. 古英语/方言词汇测试</h2>
+        <div class="warning">📜 这些是古英语或地方方言词汇</div>
+        
+        <div class="context-box">
+            <p>The old man said <span class="test-word">forsooth</span> in agreement.</p>
+            <p>She wore a beautiful <span class="test-word">kirtle</span> to the medieval fair.</p>
+            <p>The knight's <span class="test-word">hauberk</span> was made of chainmail.</p>
+            <p>He spoke in <span class="test-word">prithee</span> to the lord.</p>
+            <p>The <span class="test-word">varlet</span> served in the castle.</p>
+        </div>
+    </div>
+
+    <div class="test-category">
+        <h2>5. 极度专业术语测试</h2>
+        <div class="warning">🔬 这些是高度专业化的学术术语</div>
+        
+        <div class="context-box">
+            <p>The patient showed signs of <span class="test-word">pseudohypoparathyroidism</span>.</p>
+            <p>The chemical <span class="test-word">tetraiodophenolphthalein</span> was used in the experiment.</p>
+            <p>She studied <span class="test-word">otorhinolaryngology</span> in medical school.</p>
+            <p>The <span class="test-word">electroencephalography</span> results were inconclusive.</p>
+            <p>The <span class="test-word">magnetohydrodynamics</span> theory is complex.</p>
+        </div>
+    </div>
+
+    <div class="test-category">
+        <h2>6. 普通词汇对照组</h2>
+        <div class="instruction">✅ 这些是普通词汇，不应该触发alert</div>
+        
+        <div class="context-box">
+            <p>The <span class="test-word">spring</span> season is beautiful.</p>
+            <p>This is a <span class="test-word">legal</span> document.</p>
+            <p>Here's an <span class="test-word">example</span> of good writing.</p>
+            <p>The <span class="test-word">computer</span> is working fine.</p>
+            <p>She has a <span class="test-word">beautiful</span> voice.</p>
+        </div>
+    </div>
+
+    <script>
+        console.log('Function Call 测试页面已加载');
+        console.log('请双击单词进行测试，观察是否会弹出alert提醒');
+        
+        // 添加点击效果
+        document.querySelectorAll('.test-word').forEach(word => {
+            word.addEventListener('click', function() {
+                this.style.background = '#ffab00';
+                setTimeout(() => {
+                    this.style.background = '#fff3e0';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>

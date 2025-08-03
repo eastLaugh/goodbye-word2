@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音标显示测试 - 再见单词</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 30px;
+            line-height: 1.8;
+            background: #f8f9fa;
+        }
+        .test-section {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #6750a4;
+        }
+        .test-section h2 {
+            color: #6750a4;
+            margin-top: 0;
+        }
+        .test-word {
+            background: #e8f5e8;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #2e7d32;
+            cursor: pointer;
+        }
+        .test-word:hover {
+            background: #c8e6c9;
+        }
+        .instruction {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #bbdefb;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔤 音标显示功能测试</h1>
+    
+    <div class="instruction">
+        <strong>测试说明：</strong> 双击下面的单词，然后单击激活翻译。翻译完成后，音标应该会显示在单词上方，持续3秒后自动消失。
+    </div>
+
+    <div class="test-section">
+        <h2>常用单词测试</h2>
+        <p>These are common words that should have clear phonetic transcriptions:</p>
+        <p>The <span class="test-word">spring</span> season brings beautiful flowers.</p>
+        <p>This is a <span class="test-word">legal</span> document for your review.</p>
+        <p>Here's a good <span class="test-word">example</span> of proper usage.</p>
+        <p>The <span class="test-word">computer</span> is running smoothly.</p>
+        <p>She has a <span class="test-word">beautiful</span> singing voice.</p>
+    </div>
+
+    <div class="test-section">
+        <h2>复杂单词测试</h2>
+        <p>These words have more complex phonetic transcriptions:</p>
+        <p>The <span class="test-word">pronunciation</span> guide is helpful.</p>
+        <p>This <span class="test-word">phenomenon</span> is quite interesting.</p>
+        <p>The <span class="test-word">architecture</span> is magnificent.</p>
+        <p>We need to <span class="test-word">communicate</span> effectively.</p>
+        <p>The <span class="test-word">restaurant</span> serves excellent food.</p>
+    </div>
+
+    <div class="test-section">
+        <h2>音标显示要求</h2>
+        <ul>
+            <li>✅ 音标应该显示在选中单词的正上方</li>
+            <li>✅ 使用淡淡的颜色，不干扰阅读</li>
+            <li>✅ 字体较小，使用等宽字体</li>
+            <li>✅ 有淡入淡出动画效果</li>
+            <li>✅ 3秒后自动消失</li>
+            <li>✅ 不影响原页面布局</li>
+        </ul>
+    </div>
+
+    <script>
+        console.log('音标显示测试页面已加载');
+        console.log('请双击单词测试音标显示功能');
+        
+        // 添加视觉反馈
+        document.querySelectorAll('.test-word').forEach(word => {
+            word.addEventListener('dblclick', function() {
+                this.style.background = '#ffeb3b';
+                setTimeout(() => {
+                    this.style.background = '#e8f5e8';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
