@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>再见单词</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>再见单词</h1>
+      <div class="status-indicator" id="statusIndicator"></div>
+    </header>
+
+         <div class="tabs">
+       <button class="tab-button active" data-tab="vocabulary">生词本</button>
+       <button class="tab-button" data-tab="settings">设置</button>
+     </div>
+
+    <div class="tab-content">
+             <!-- 生词本标签页 -->
+       <div class="tab-pane active" id="vocabularyTab">
+         <div class="search-box">
+           <input type="text" id="searchInput" placeholder="搜索生词...">
+           <button id="clearVocabulary" class="clear-btn">清空生词本</button>
+         </div>
+         
+         <div class="vocabulary-list" id="vocabularyList">
+           <!-- 生词将在这里动态加载 -->
+         </div>
+         
+         <div class="empty-state" id="emptyState">
+           <div class="empty-icon">📚</div>
+           <p>暂无生词</p>
+           <p class="empty-hint">双击选中文本，然后点击选中区域即可添加生词</p>
+         </div>
+       </div>
+
+      <!-- 设置标签页 -->
+      <div class="tab-pane" id="settingsTab">
+        <div class="setting-group">
+          <label for="apiKeyInput">DeepSeek V3 API 密钥</label>
+          <div class="input-group">
+            <input type="password" id="apiKeyInput" placeholder="请输入您的API密钥">
+            <button id="toggleApiKey" class="toggle-btn">👁</button>
+          </div>
+          <p class="setting-hint">获取API密钥请访问 <a href="https://platform.deepseek.com/" target="_blank">DeepSeek平台</a></p>
+          <p class="setting-hint">使用 DeepSeek-V3-0324 模型 (deepseek-chat)</p>
+        </div>
+
+
+
+
+
+
+
+        <div class="setting-actions">
+          <button id="saveSettings" class="primary-btn">保存设置</button>
+          <button id="testApi" class="secondary-btn">测试连接</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html> 

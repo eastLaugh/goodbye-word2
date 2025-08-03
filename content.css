@@ -1,0 +1,123 @@
+/* 智能翻译气泡样式 - Material You 版本 */
+.smart-translation-bubble {
+  display: inline-block;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(79, 174, 79, 0.2);
+  margin-left: 8px;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 200px;
+  width: auto;
+  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle; 
+  line-height: 1.2;
+  position: relative;
+  z-index: 1;
+  animation: bubbleAppear 0.3s ease-out;
+  user-select: none;
+  letter-spacing: 0.1px;
+}
+
+/* 关闭按钮样式 */
+.bubble-close {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  border-radius: 7px;
+  width: 14px;
+  height: 14px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.bubble-close:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.smart-translation-bubble:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(79, 174, 79, 0.3);
+}
+
+/* 加载状态 - 呼吸灯效果 */
+.smart-translation-bubble.loading {
+  animation: breathe 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    opacity: 0.6;
+    background: linear-gradient(135deg, #6750a4, #7f67be);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    background: linear-gradient(135deg, #777ce4, #abb7e6);
+    transform: scale(1.08);
+  }
+}
+
+/* 成功状态 */
+.smart-translation-bubble.success {
+  background: linear-gradient(135deg, #4fae4f, #3d8b3d);
+  box-shadow: 0 2px 8px rgba(79, 174, 79, 0.2);
+}
+
+/* 错误状态 */
+.smart-translation-bubble.error {
+  background: linear-gradient(135deg, #f44336, #ff5252);
+  box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2);
+}
+
+/* 动画效果 */
+@keyframes bubbleAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes bubbleHighlight {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(103, 80, 164, 0.2);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(103, 80, 164, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(103, 80, 164, 0.2);
+  }
+}
+
+/* 生词气泡样式 */
+.smart-translation-bubble.vocabulary-bubble {
+  background: linear-gradient(135deg, #6750a4, #5a4a8a);
+  box-shadow: 0 2px 8px rgba(103, 80, 164, 0.2);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.smart-translation-bubble.vocabulary-bubble:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(103, 80, 164, 0.3);
+}

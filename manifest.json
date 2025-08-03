@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "再见单词",
+  "version": "1.0.0",
+  "description": "智能选中文本并翻译，支持DeepSeek API",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://api.deepseek.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["notification.js", "content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "再见单词"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+
+    "128": "icons/icon.png"
+  }
+} 
